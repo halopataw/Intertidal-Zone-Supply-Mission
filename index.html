@@ -9,7 +9,15 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap');
     
-    body { font-family: 'Noto Serif TC', serif; }
+    body { 
+        font-family: 'Noto Serif TC', serif; 
+        /* --- ✨ 防止文字選取 --- */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: #020617;
+    }
 
     .chart-container {
         position: relative;
@@ -18,10 +26,8 @@
         margin-left: auto;
         margin-right: auto;
         height: 300px;
-        max-height: 400px;
     }
 
-    /* --- ✨ 傳奇標誌區塊 --- */
     .logo-section {
         min-height: 180px;
         display: flex;
@@ -37,30 +43,6 @@
         filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
     }
 
-    .hero-a {
-        position: relative;
-        font-size: 6rem;
-        font-weight: 900;
-        line-height: 0.8;
-        background: linear-gradient(135deg, #4d7c0f, #14532d);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-right: -0.1em;
-    }
-
-    .hero-a::before {
-        content: '';
-        position: absolute;
-        left: -15px;
-        top: 15%;
-        width: 1em;
-        height: 100%;
-        background: #022c22;
-        clip-path: polygon(40% 0%, 80% 10%, 95% 35%, 85% 75%, 35% 100%, 5% 75%, 15% 30%, 30% 5%);
-        z-index: -1;
-        opacity: 0.8;
-    }
-
     .logo-text-top {
         font-size: 2.8rem;
         font-weight: 900;
@@ -68,28 +50,6 @@
         background: linear-gradient(to bottom, #fde68a, #d97706 60%, #78350f);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        line-height: 1;
-    }
-
-    .logo-text-bottom {
-        font-size: 3.2rem;
-        font-weight: 900;
-        letter-spacing: -0.02em;
-        background: linear-gradient(to bottom, #fef3c7, #d97706 50%, #78350f);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1;
-        display: flex;
-        align-items: baseline;
-    }
-
-    .of-fire {
-        font-size: 1.2rem;
-        color: #d4af37;
-        -webkit-text-fill-color: initial;
-        margin-left: 0.5rem;
-        position: relative;
-        top: -0.5rem;
     }
 
     .quest-card {
@@ -97,14 +57,6 @@
         border: 2px solid #d4af37;
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), inset 0 0 50px rgba(212, 175, 55, 0.05);
         position: relative;
-    }
-
-    .quest-card::before {
-        content: '';
-        position: absolute;
-        top: 10px; left: 10px; right: 10px; bottom: 10px;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        pointer-events: none;
     }
 
     .tab-active {
@@ -115,33 +67,11 @@
         box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
     }
 
-    .tab-inactive {
-        background: #f3f4f6;
-        color: #6b7280;
-        border-color: #e5e7eb;
-    }
-
     .level-badge {
         background: linear-gradient(135deg, #b45309, #78350f);
         clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #1e293b; }
-    ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
-
-    .loader {
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #d4af37;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        animation: spin 1s linear infinite;
-        display: inline-block;
-    }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    /* 任務照片樣式 */
     .quest-photo {
         width: 100%;
         max-width: 320px;
@@ -153,14 +83,9 @@
         box-shadow: 0 8px 16px rgba(0,0,0,0.4);
         transition: all 0.3s ease;
         background: #2d3748;
-    }
-    .quest-photo:hover {
-        transform: scale(1.05) translateY(-5px);
-        box-shadow: 0 12px 24px rgba(212, 175, 55, 0.3);
-        z-index: 20;
+        pointer-events: none; 
     }
 
-    /* 活動資訊專用樣式 */
     .info-label {
         color: #d97706;
         font-weight: 900;
@@ -169,24 +94,18 @@
         padding-left: 0.75rem;
     }
 
-    /* 地圖容器樣式 */
     .map-container {
         position: relative;
         overflow: hidden;
         width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        padding-top: 56.25%; 
         border-radius: 1.5rem;
         border: 2px solid #d4af37;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     .map-container iframe {
         position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0; bottom: 0; right: 0;
+        width: 100%; height: 100%;
         border: none;
     }
 
@@ -199,11 +118,31 @@
     .btn-legend-gold:hover {
         transform: translateY(-3px) scale(1.05);
         box-shadow: 0 0 25px rgba(217, 119, 6, 0.6);
-        background: linear-gradient(135deg, #fbbf24, #d97706);
+    }
+
+    .edu-card {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        transition: all 0.3s ease;
+    }
+    .edu-card:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-5px);
+    }
+
+    /* 導師令狀樣式 */
+    .mentor-scroll {
+        background: #fefcf0;
+        border: 1px solid #e2d1a4;
+        box-shadow: 5px 5px 0px #d4af37;
+        transition: all 0.3s ease;
+    }
+    .mentor-scroll:hover {
+        transform: rotate(-1deg) scale(1.02);
     }
 </style>
 </head>
-<body class="bg-slate-950 text-slate-200">
+<body class="text-slate-200">
 
 <header class="relative min-h-[95vh] flex items-center justify-center overflow-hidden border-b border-amber-500/10">
     <div class="absolute inset-0 bg-slate-900 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-50"></div>
@@ -212,19 +151,13 @@
     <div class="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
         <div class="logo-section">
             <img src="https://lh3.googleusercontent.com/pw/AP1GczNmkfjUUl3r-9l-eWvapMZWzDDMPnsQFt7mmoWnKvRQL67QTuoB8eYz8QB80xb-lihVl2NsbbU4p-yvnuBUFLCCZun2veXJ_cpChJ5Suan5MR7P0lzwf3EnxfhLe3oxl8KjZyG2ANNd2G496i603WI=w775-h314-s-no-gm?authuser=0" 
-                 alt="Legend of Absolutus Logo" 
+                 alt="Legend Logo" 
                  id="official-logo"
-                 class="max-w-[300px] md:max-w-[500px] transition-opacity duration-500"
+                 class="max-w-[300px] md:max-w-[500px]"
                  onerror="handleLogoError(this)">
-            
             <div id="logo-fallback" class="hidden legend-logo-wrapper">
                 <div class="logo-text-top">LEGEND</div>
-                <div class="logo-text-bottom">
-                    <span class="hero-a">A</span>
-                    <span>BSOLUTUS</span>
-                    <span class="of-fire">of 🔥</span>
-                </div>
-                <div class="mt-4 text-amber-500 font-black tracking-[0.8em] text-xl border-t border-amber-500/30 pt-2">絕對傳奇</div>
+                <div class="mt-2 text-amber-500 font-black tracking-[0.8em] text-xl">絕對傳奇</div>
             </div>
         </div>
 
@@ -254,141 +187,144 @@
             </div>
         </div>
 
-        <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed italic mb-10">
-            「踏入潮汐交界之境，採集深海之靈魂，鍛造傳說中的海味補給。」
-        </p>
-
         <div class="flex flex-wrap justify-center gap-4">
-            <button onclick="document.getElementById('ai-assistant').scrollIntoView({behavior: 'smooth', block: 'start'})" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-lg border border-slate-600 transition-all">
-                ✨ 尋求導師指引
+            <button onclick="document.getElementById('guild-mentor').scrollIntoView({behavior: 'smooth', block: 'start'})" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-lg border border-slate-600 transition-all">
+                ✨ 檢視導師令狀
             </button>
             <a href="https://forms.gle/TA7Qkqxu79J24pr49" target="_blank" class="btn-legend-gold font-black py-4 px-10 rounded-lg flex items-center justify-center gap-2">
                 ⚔️ 立即報名參戰
             </a>
-            <button onclick="document.getElementById('quest-highlights').scrollIntoView({behavior: 'smooth'})" class="w-full md:w-auto text-slate-400 hover:text-white font-bold py-2 underline underline-offset-4 decoration-amber-500/50">
-                探索試煉細節
-            </button>
         </div>
     </div>
 </header>
 
 <main class="max-w-6xl mx-auto px-6 py-24 space-y-32">
 
-    <!-- AI 導師區塊 -->
-    <section id="ai-assistant" class="bg-slate-900 border-2 border-amber-500/50 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(217,119,6,0.1)]">
-        <div class="flex flex-col md:flex-row gap-12 items-start">
-            <div class="w-full md:w-1/2">
-                <h3 class="text-3xl font-black text-amber-500 mb-4 flex items-center gap-2">✨ 冒險導師</h3>
-                <p class="text-slate-300 mb-8">選擇您的屬性，獲取來自公會長的最強指令。</p>
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-bold text-teal-400 uppercase tracking-widest mb-2">1. 選擇職業身份</label>
-                        <select id="user-class" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500">
-                            <option value="帶著孩子的守護者 (家長)">帶著孩子的守護者 (家長)</option>
-                            <option value="求知若渴的見習生 (學生)">求知若渴的見習生 (學生)</option>
-                            <option value="追求極致品味的吟遊詩人 (饕客)">追求極致品味的吟遊詩人 (饕客)</option>
-                            <option value="挑戰自我的遠征軍 (企業/團體)">挑戰自我的遠征軍 (企業/團體)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-teal-400 uppercase tracking-widest mb-2">2. 設定任務目標</label>
-                        <select id="user-goal" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500">
-                            <option value="獲得深厚的海洋知識">獲得深厚的海洋知識</option>
-                            <option value="享受純粹的手作樂趣">享受純粹的手作樂趣</option>
-                            <option value="與隊友建立深厚羈絆">與隊友建立深厚羈絆</option>
-                            <option value="拍出震撼公會的照片">拍出震撼公會的照片</option>
-                        </select>
-                    </div>
-                    <button onclick="generateAIAdvice()" id="ai-btn" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-black py-4 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
-                        ✨ 獲取作戰指令
-                    </button>
-                </div>
+    <!-- ✨ 冒險導師區塊：移除 AI，改為直接呈現 ✨ -->
+    <section id="guild-mentor" class="space-y-12">
+        <div class="text-center">
+            <h3 class="text-3xl md:text-4xl font-black text-amber-500 mb-4 flex items-center justify-center gap-3">
+                ✨ 冒險導師的作戰指令
+            </h3>
+            <p class="text-slate-400 text-lg">公會長已針對不同背景的冒險者，下達了專屬任務方針。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- 家長 -->
+            <div class="mentor-scroll p-8 rounded-lg text-slate-900">
+                <h4 class="text-xl font-black text-amber-800 mb-4 border-b border-amber-800/20 pb-2">🛡️ 帶著孩子的守護者</h4>
+                <p class="italic leading-relaxed font-medium">「任務中，請守護好小冒險者的好奇心。讓他們在潮間帶學會敬畏自然，在工坊中體驗勞動與合作的甜美。這份補給品，將成為你們共同的傳奇記憶。」</p>
             </div>
-            <div class="w-full md:w-1/2 min-h-[300px] sticky top-8 flex items-center justify-center">
-                <div id="ai-response-container" class="quest-card w-full p-8 rounded-xl hidden">
-                    <div class="flex items-center gap-2 mb-4 border-b border-amber-500/20 pb-4">
-                        <span class="text-2xl">📜</span>
-                        <h4 class="font-black text-amber-800 text-xl tracking-wider">目前作戰指令</h4>
-                    </div>
-                    <div id="ai-response-text" class="text-slate-800 leading-relaxed italic text-lg"></div>
-                </div>
-                <div id="ai-placeholder" class="text-slate-600 text-center italic border-2 border-dashed border-slate-800 rounded-xl p-12 w-full">
-                    「公會長正在待命，請輸入您的屬性。」
-                </div>
-                <div id="ai-loading" class="hidden text-center">
-                    <div class="loader mb-4"></div>
-                    <p class="text-amber-500 font-bold animate-pulse">正在調動公會祕法通訊 (Gemini AI)...</p>
-                </div>
+            <!-- 學生 -->
+            <div class="mentor-scroll p-8 rounded-lg text-slate-900">
+                <h4 class="text-xl font-black text-amber-800 mb-4 border-b border-amber-800/20 pb-2">📜 求知若渴的見習生</h4>
+                <p class="italic leading-relaxed font-medium">「雙眼是你的指南針。觀察每一個生物，記錄每一波潮汐留下的線索。這不只是採集素材，更是將海洋的知識轉化為前進的力量。」</p>
+            </div>
+            <!-- 饕客 -->
+            <div class="mentor-scroll p-8 rounded-lg text-slate-900">
+                <h4 class="text-xl font-black text-amber-800 mb-4 border-b border-amber-800/20 pb-2">🎻 追求極致的吟遊詩人</h4>
+                <p class="italic leading-relaxed font-medium">「用靈魂去感受海洋的味道。從岸邊的鮮美海藻到炭火上升騰的香氣，每一道工序都是為了淬煉出足以支撐遠征隊士氣的極致補給。」</p>
+            </div>
+            <!-- 企業團體 -->
+            <div class="mentor-scroll p-8 rounded-lg text-slate-900">
+                <h4 class="text-xl font-black text-amber-800 mb-4 border-b border-amber-800/20 pb-2">⚔️ 挑戰自我的遠征軍</h4>
+                <p class="italic leading-relaxed font-medium">「公會的強大來自成員間的羈絆。補給線非單兵作業，透過分工、協作與共同實踐，在此刻建立一支無堅不摧的傳奇小隊。」</p>
             </div>
         </div>
     </section>
 
-    <!-- 任務簡報 (Lore) -->
+    <!-- 任務簡報 -->
     <section id="quest-lore" class="quest-card rounded-lg p-8 md:p-16 text-slate-900 overflow-hidden">
         <div class="absolute top-0 right-0 p-4 opacity-10 text-8xl">🛡️</div>
-        <h3 class="text-3xl font-black mb-8 border-b-2 border-amber-500/30 pb-4 inline-block tracking-widest uppercase">Mission Briefing 任務簡報</h3>
-        <div id="lore-text-container" class="text-xl md:text-2xl leading-relaxed font-medium space-y-6">
+        <h3 class="text-3xl font-black mb-8 border-b-2 border-amber-500/30 pb-4 inline-block tracking-widest uppercase text-amber-800">Mission Briefing 任務簡報</h3>
+        <div id="lore-text-display" class="text-xl md:text-2xl leading-relaxed font-medium space-y-6">
+            <p class="font-black text-2xl md:text-3xl text-amber-900">【公會緊急委託：補給行動】</p>
+            <p>冒險者們！<br>八斗子前線傳來緊急消息。</p>
+            <p>公會補給工坊中，負責製作遠征軍糧食的傳奇香腸達人，因先前執行任務時意外受傷，短時間內無法繼續完成補給作業。偏偏此刻，真灼之眼的遠征隊正準備啟程，補給線不能中斷，士氣更不能動搖。</p>
+            <p>召集能夠回應任務的冒險者，前往八斗子海岸線，辨識潮間帶環境，採集可用的海洋線索與珍貴素材，並返回補給工坊，親手灌製與烘烤傳說中的補給品。</p>
+            <p class="italic text-slate-700">這不職是一場普通的體驗。</p>
+            <p>在《絕對傳奇》的世界裡，真正支撐遠征軍走向未知前線的，從來不只是武器與勇氣，還有那些來自土地、海洋與雙手製作而成的補給力量。</p>
+            <p>潮水退去後，海岸會留下答案。而工坊裡升起的香氣，將把那些答案轉化成可以帶上旅途的能量。</p>
+            <p class="font-bold text-amber-800 underline decoration-amber-500/30">每一位加入這場行動的人，都不只是參與者，而是補給線上的正式成員。因為你手中完成的，不只是一份食物，而是一份支撐整支遠征軍繼續前進的榮耀。</p>
         </div>
     </section>
 
-    <!-- 試煉項目 -->
+    <!-- 為什麼值得參加 -->
+    <section id="value-proposition" class="text-center py-12 border-y border-amber-500/10">
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-10">為什麼值得參加？</h3>
+        <div class="max-w-3xl mx-auto space-y-8 text-center">
+            <p class="text-xl md:text-2xl text-slate-300 leading-relaxed">
+                因為這不是單純的「走走看看」，<br>
+                而是一場把海岸探索、地方文化、食育體驗與手作參與整合在一起的深度活動。
+            </p>
+            <p class="text-2xl md:text-3xl font-black text-amber-500 italic">
+                你付出的不只是報名費，你換回的是一段真正能被記住的地方經驗。
+            </p>
+            <p class="text-xl text-slate-400">
+                在八斗子，你不職是路過，而是以參與者的身分，走進這片海的日常。
+            </p>
+        </div>
+    </section>
+
+    <!-- 試煉亮點區塊 -->
     <section id="quest-highlights">
         <div class="mb-12 text-center">
-            <h3 class="text-4xl font-black text-white mb-4">🔮 任務核心：冒險者試煉</h3>
-            <p class="text-slate-400 text-lg">點擊下方不同階段，查看詳細的任務情報與現場體驗內容。</p>
+            <h3 class="text-4xl font-black text-white mb-4">🔮 試煉亮點：補給之路</h3>
+            <p class="text-slate-400 text-lg">點擊下方標籤，查看現場體驗細節。</p>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div class="lg:col-span-4 flex flex-col gap-4">
-                <button onclick="activateTab(0)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-active glow-hover">
+                <button onclick="activateTab(0)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-active">
                     <span class="text-2xl">👣</span>
-                    <div class="text-left">
-                        <div class="text-xs uppercase opacity-70">STAGE 01</div>
-                        <div>潮間帶生態觀察</div>
-                    </div>
+                    <div class="text-left"><div class="text-xs opacity-70">HIGHLIGHT 01</div><div>海洋日常認識</div></div>
                 </button>
-                <button onclick="activateTab(1)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive glow-hover">
+                <button onclick="activateTab(1)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive">
+                    <span class="text-2xl">🤝</span>
+                    <div class="text-left"><div class="text-xs opacity-70">HIGHLIGHT 02</div><div>深度參與互動</div></div>
+                </button>
+                <button onclick="activateTab(2)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive">
                     <span class="text-2xl">🌭</span>
-                    <div class="text-left">
-                        <div class="text-xs uppercase opacity-70">STAGE 02</div>
-                        <div>協力灌製海藻香腸</div>
-                    </div>
+                    <div class="text-left"><div class="text-xs opacity-70">HIGHLIGHT 03</div><div>手作海味補給</div></div>
                 </button>
-                <button onclick="activateTab(2)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive glow-hover">
-                    <span class="text-2xl">🔥</span>
-                    <div class="text-left">
-                        <div class="text-xs uppercase opacity-70">STAGE 03</div>
-                        <div>現場炭烤成果驗證</div>
-                    </div>
-                </button>
-                <button onclick="activateTab(3)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive glow-hover">
+                <button onclick="activateTab(3)" class="tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive">
                     <span class="text-2xl">🛡️</span>
-                    <div class="text-left">
-                        <div class="text-xs uppercase opacity-70">CORE VALUE</div>
-                        <div>沉浸式任務體驗</div>
-                    </div>
+                    <div class="text-left"><div class="text-xs opacity-70">HIGHLIGHT 04</div><div>團隊協作成就</div></div>
                 </button>
             </div>
             <div class="lg:col-span-8 bg-slate-900/50 rounded-2xl border border-slate-700 p-8 md:p-12 min-h-[550px] relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 opacity-5 text-[12rem]" id="bg-icon">👣</div>
-                <div id="tab-content" class="relative z-10 opacity-100 transition-all duration-500">
+                <div id="tab-content" class="relative z-10">
                     <div class="flex items-center gap-4 mb-6">
                         <div id="tab-num-badge" class="level-badge w-12 h-14 flex items-center justify-center text-white font-black text-xl">1</div>
-                        <h4 class="text-3xl font-bold text-teal-400" id="tab-title">潮間帶草鞋採集海藻</h4>
+                        <h4 class="text-3xl font-bold text-teal-400" id="tab-title"></h4>
                     </div>
                     <p class="text-xl text-slate-300 leading-relaxed mb-8" id="tab-desc"></p>
-                    
                     <div id="tab-photo-container" class="flex flex-wrap gap-6 mb-8 justify-start"></div>
-
                     <div class="bg-slate-800/80 p-6 rounded-lg border-l-4 border-amber-500 shadow-lg">
-                        <p class="text-sm text-amber-500 font-bold uppercase mb-2" id="tip-label">💡 冒險提醒</p>
+                        <p class="text-sm text-amber-500 font-bold uppercase mb-2">💡 冒險提醒</p>
                         <p id="tab-tip" class="text-slate-400 italic"></p>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-slate-800">
+                        <h5 class="text-teal-400 font-bold mb-4 uppercase tracking-widest text-sm">你會體驗到什麼？</h5>
+                        <ul id="tab-experience-list" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-400 text-sm italic"></ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 能力分析 -->
+    <!-- 適合這樣的你 -->
+    <section id="suitable-for" class="bg-slate-900/80 p-12 rounded-[3rem] border border-amber-500/20">
+        <h3 class="text-3xl font-black text-white mb-10 flex items-center gap-4 justify-center">⚔️ 適合這樣的你</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div class="flex items-start gap-4 p-4 bg-slate-800/40 rounded-2xl"><span class="text-teal-400 text-2xl">✔️</span><p class="text-slate-300 text-sm">想帶孩子參加有內容的親子活動</p></div>
+            <div class="flex items-start gap-4 p-4 bg-slate-800/40 rounded-2xl"><span class="text-teal-400 text-2xl">✔️</span><p class="text-slate-300 text-sm">喜歡地方旅行、海洋文化與手作體驗</p></div>
+            <div class="flex items-start gap-4 p-4 bg-slate-800/40 rounded-2xl"><span class="text-teal-400 text-2xl">✔️</span><p class="text-slate-300 text-sm">對八斗子、漁村文化、海岸生活有興趣</p></div>
+        </div>
+    </section>
+
+    <!-- 能力分析 (圖表) -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800">
             <h3 class="text-3xl font-black text-white mb-6 flex items-center gap-3">
@@ -402,11 +338,71 @@
             <div class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-6">
                 <h4 class="text-xl font-bold text-white mb-4">🏆 適合召募對象</h4>
                 <ul class="space-y-2 text-slate-300">
-                    <li class="flex items-center gap-2">👨‍👩‍👧‍👦 親子家庭 / 國小中高年級以上學生</li>
+                    <li class="flex items-center gap-2">👨‍👩‍👧‍👦 親子家庭、一般民眾、朋友同行、小型團體</li>
                     <li class="flex items-center gap-2">🏫 學校戶外教育與主題課程</li>
                     <li class="flex items-center gap-2">🏢 企業體驗 / 社區團體活動</li>
-                    <li class="flex items-center gap-2">🌊 喜歡海洋文化與地方風味的民眾</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育價值區塊 -->
+    <section id="education-alignment" class="space-y-16">
+        <div class="text-center">
+            <h3 class="text-3xl md:text-5xl font-black text-white mb-6 flex items-center justify-center gap-3">
+                <span class="text-teal-400">🎓</span> 試煉之魂：12 年國教深度對應
+            </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="edu-card p-8 rounded-3xl relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-amber-500/10 text-8xl font-black italic">A</div>
+                <h4 class="text-2xl font-black text-amber-500 mb-6 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-black">A2</span>
+                    系統思考與解決問題
+                </h4>
+                <div class="text-slate-300 text-sm font-medium">辨識地形與潮汐線索，擬定有效的採集與補給製作策略。</div>
+            </div>
+
+            <div class="edu-card p-8 rounded-3xl relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-teal-400/10 text-8xl font-black italic">B</div>
+                <h4 class="text-2xl font-black text-teal-400 mb-6 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-full bg-teal-400/20 flex items-center justify-center text-sm font-black">B3</span>
+                    多元文化與國際理解
+                </h4>
+                <div class="text-slate-300 text-sm font-medium">透過草鞋文化與海藻加工，深度認識漁村共生智慧與傳統再造。</div>
+            </div>
+
+            <div class="edu-card p-8 rounded-3xl relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-cyan-400/10 text-8xl font-black italic">C</div>
+                <h4 class="text-2xl font-black text-cyan-400 mb-6 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center text-sm font-black">C2</span>
+                    人際關係與團隊合作
+                </h4>
+                <div class="text-slate-300 text-sm font-medium">「補給線非單兵作業」是本任務的核心訓誡，強調精確分工與配合。</div>
+            </div>
+
+            <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-8 bg-slate-900/80 p-8 rounded-[2rem] border border-amber-500/20 text-left">
+                <div class="space-y-6 text-left">
+                    <h4 class="text-3xl font-black text-white flex items-center gap-4">🌊 海洋教育議題融入</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-800/50 p-4 rounded-xl">
+                            <span class="text-teal-400 font-bold block mb-1 text-sm text-left">海洋科學與技術</span>
+                            <span class="text-xs text-slate-300 text-left block">了解潮汐規律、地形與生物對極端環境的適應。</span>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-xl">
+                            <span class="text-teal-400 font-bold block mb-1 text-sm text-left">海洋資源與永續</span>
+                            <span class="text-xs text-slate-300 text-left block">實踐「適量採集」原則，反思海洋利用的永續。</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center bg-slate-950/50 p-6 rounded-2xl border-l-4 border-amber-500">
+                    <h5 class="text-amber-500 font-black mb-4 text-lg">跨領域目標</h5>
+                    <div class="space-y-4 text-xs text-slate-400 w-full">
+                        <div class="flex justify-between border-b border-slate-800 pb-2"><span class="font-bold text-white text-left">自然科學</span><span>生物多樣性監測</span></div>
+                        <div class="flex justify-between border-b border-slate-800 pb-2"><span class="font-bold text-white text-left">綜合活動</span><span>體驗學習與反思</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -414,83 +410,44 @@
     <!-- 活動資訊區塊 -->
     <section id="activity-info" class="quest-card rounded-3xl p-8 md:p-16 text-slate-900 relative overflow-hidden">
         <div class="absolute top-0 right-0 p-8 opacity-5 text-[15rem] pointer-events-none">📜</div>
+        <h3 class="text-4xl font-black mb-12 text-center text-amber-800 tracking-tighter underline decoration-amber-500/30 decoration-8 underline-offset-8">活動資訊</h3>
         
-        <div class="text-center mb-16">
-            <h3 class="text-4xl font-black mb-4 tracking-tighter text-amber-800 underline decoration-amber-500/30 decoration-8 underline-offset-8">活動資訊</h3>
-            <p class="text-xl text-slate-700 italic">在八斗子的海岸與工坊之間，完成一場從探索到補給製作的任務體驗。</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-16 text-left">
             <div class="space-y-8">
-                <div class="group">
-                    <h5 class="info-label mb-2 text-lg">集合地點｜</h5>
-                    <p class="text-slate-900 text-xl font-black">基隆市中正區八斗街53之1號</p>
-                    <p class="text-sm text-slate-500 mt-1 italic">※ 請準時到達集合地點，展開您的冒險任務</p>
-                </div>
-                <div class="group">
+                <div>
                     <h5 class="info-label mb-2 text-lg">活動地點｜</h5>
-                    <p class="text-slate-800 text-lg font-medium">八斗子潮間帶周邊場域、嘿路島民工作室場域</p>
+                    <p class="font-bold text-lg leading-relaxed text-slate-900 text-left">八斗子潮間帶周邊場域、<br>嘿路島民工作室場域</p>
+                    <p class="text-slate-900 text-sm mt-1 font-black text-left">集合點：基隆市中正區八斗街53之1號</p>
                 </div>
-                <div class="group">
-                    <h5 class="info-label mb-2 text-lg">活動時間｜</h5>
-                    <p class="text-slate-800 text-lg font-medium">每場次約 120–150 分鐘</p>
-                </div>
-                <div class="group">
-                    <h5 class="info-label mb-2 text-lg">活動內容｜</h5>
-                    <p class="text-slate-800 text-lg font-medium leading-relaxed">潮間帶探索、海岸導覽、香腸灌製、補給烘烤體驗</p>
+                <div><h5 class="info-label mb-2 text-lg">活動時間｜</h5><p class="font-medium text-lg text-left">每場次約 120–150 分鐘</p></div>
+                <div><h5 class="info-label mb-2 text-lg">費用包含｜</h5>
+                    <ul class="text-sm font-medium list-disc list-inside space-y-1 mt-2 text-left">
+                        <li>在地引導與活動帶領</li>
+                        <li>場域導覽與任務設計</li>
+                        <li>香腸工坊體驗材料</li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="space-y-8">
-                <div class="group">
+            <div class="space-y-8 text-left">
+                <div>
                     <h5 class="info-label mb-2 text-lg">活動費用｜</h5>
-                    <p class="text-2xl font-black text-amber-700">每人新臺幣 800 元</p>
-                    <p class="text-sm text-slate-500 italic mt-1">※ 費用包含導覽解說、體驗活動及材料使用</p>
-                </div>
-                <div class="group">
-                    <h5 class="info-label mb-2 text-lg">成行條件｜</h5>
-                    <div class="inline-flex items-center px-4 py-1 bg-amber-100 rounded-lg border border-amber-200">
-                        <span class="text-amber-800 font-bold text-xl">4 人成行</span>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-2 text-left">
+                        <span class="text-slate-600">原價</span><span class="text-slate-800 font-bold text-lg text-left">NT$ 800 / 人</span>
+                        <span class="text-amber-700 font-black text-lg underline">早鳥優惠</span><span class="text-amber-700 font-black text-lg text-left">NT$ 699 / 人</span>
+                        <span class="text-teal-700 font-black text-lg">親子組優惠</span><span class="text-teal-700 font-black text-lg text-left">NT$ 1,400 (1大1小)</span>
                     </div>
                 </div>
-                <div class="bg-red-50 p-5 rounded-2xl border border-red-100 shadow-inner">
-                    <h5 class="flex items-center gap-2 text-red-800 font-black mb-2 uppercase tracking-widest text-sm">
-                        ⚠️ 參與提醒
-                    </h5>
-                    <p class="text-red-900 leading-relaxed font-medium">未成年參與者須由至少一位成人陪同報名，並全程共同參與活動。</p>
-                </div>
+                <div><h5 class="info-label mb-2 text-lg text-left">成行條件｜</h5><p class="font-bold text-xl text-left">4 人成行</p></div>
             </div>
         </div>
 
         <div class="max-w-5xl mx-auto mb-16">
-            <div class="map-container">
-                <iframe 
-                    src="https://maps.google.com/maps?q=基隆市中正區八斗街53之1號&hl=zh-TW&z=16&output=embed" 
-                    allowfullscreen="" 
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
-
-        <div class="max-w-5xl mx-auto bg-teal-50/50 p-8 md:p-12 rounded-[2rem] border-2 border-dashed border-teal-200 mb-16">
-            <div class="flex flex-col md:flex-row gap-8 items-start">
-                <div class="flex-shrink-0 bg-teal-600 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-teal-200">👣</div>
-                <div>
-                    <h5 class="text-2xl font-black text-teal-800 mb-4">草鞋體驗說明｜</h5>
-                    <div class="text-teal-900 leading-relaxed space-y-4 text-lg">
-                        <p>本活動提供<span class="font-bold border-b-2 border-teal-300">傳統固定尺寸草鞋體驗</span>，無另分大小規格。</p>
-                        <p class="italic text-teal-800">建議於體驗前脫下鞋襪，以<span class="font-bold">赤腳穿著</span>方式進行，並於草鞋浸濕海水後行走，整體貼合度與舒適感較佳。</p>
-                        <p>此體驗適合全年齡參與，無須另行擔心尺寸選擇問題。</p>
-                    </div>
-                </div>
-            </div>
+            <div class="map-container"><iframe src="https://maps.google.com/maps?q=基隆市中正區八斗街53之1號&hl=zh-TW&z=16&output=embed" loading="lazy"></iframe></div>
         </div>
 
         <div class="text-center">
-            <a href="https://forms.gle/TA7Qkqxu79J24pr49" target="_blank" class="inline-block bg-slate-900 hover:bg-slate-800 text-white font-black py-6 px-20 rounded-full text-2xl shadow-2xl transition-all transform hover:scale-105 active:scale-95">
-                立即申請委託 ✍️
-            </a>
-            <p class="text-slate-500 mt-6 font-bold tracking-widest uppercase text-sm">點擊按鈕跳轉至 Google 表單報名</p>
+            <p class="text-xl text-slate-800 font-black mb-8 leading-relaxed">帶著好奇心出發，一起走進八斗子的潮間帶現場，<br class="hidden md:block">完成屬於你的海岸補給任務。</p>
+            <a href="https://forms.gle/TA7Qkqxu79J24pr49" target="_blank" class="inline-block bg-slate-900 hover:bg-slate-800 text-white font-black py-6 px-20 rounded-full text-2xl shadow-2xl transition-all transform hover:scale-105 active:scale-95">立即申請委託 ✍️</a>
         </div>
     </section>
 
@@ -501,207 +458,112 @@
 </footer>
 
 <script>
+    // --- ✨ 保護機制 ✨ ---
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.onkeydown = function(e) {
+        if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 73 || e.keyCode === 83)) return false;
+        if (e.keyCode === 123) return false;
+    };
+    document.addEventListener('dragstart', event => event.preventDefault());
+
     function handleLogoError(img) {
-        if (!img.src.includes('螢幕擷取畫面')) {
-            img.src = '螢幕擷取畫面 2026-03-17 221725.jpg';
-        } else {
-            document.getElementById('logo-fallback').classList.remove('hidden');
-            img.style.display = 'none';
-        }
+        img.style.display = 'none';
+        document.getElementById('logo-fallback').classList.remove('hidden');
     }
 </script>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-
-    const firebaseConfig = JSON.parse(__firebase_config);
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const apiKey = ""; 
-    const aiModel = "gemini-2.5-flash-preview-09-2025";
-
-    const initAuth = async () => {
-        try {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else { await signInAnonymously(auth); }
-        } catch (error) { console.error("Auth Error:", error); }
-    };
-    initAuth();
-
-    window.generateAIAdvice = async () => {
-        const userClass = document.getElementById('user-class').value;
-        const userGoal = document.getElementById('user-goal').value;
-        const btn = document.getElementById('ai-btn');
-        const loading = document.getElementById('ai-loading');
-        const placeholder = document.getElementById('ai-placeholder');
-        const responseCard = document.getElementById('ai-response-container');
-        const responseText = document.getElementById('ai-response-text');
-
-        btn.disabled = true;
-        loading.classList.remove('hidden');
-        placeholder.classList.add('hidden');
-        responseCard.classList.add('hidden');
-
-        const systemPrompt = `你現在是「八斗子冒險公會」的公會長。請根據冒險者的職業與目標，給予一段傳奇且帶幽默的作戰指令。繁體中文，約150字。`;
-        const userQuery = `職業：${userClass}，目標：${userGoal}。`;
-
-        const callApi = async (retryCount = 0) => {
-            try {
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/${aiModel}:generateContent?key=${apiKey}`;
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] } })
-                });
-                if (!response.ok) throw new Error('API Error');
-                const result = await response.json();
-                return result.candidates?.[0]?.content?.parts?.[0]?.text;
-            } catch (error) {
-                if (retryCount < 5) {
-                    const delay = Math.pow(2, retryCount) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    return callApi(retryCount + 1);
-                }
-                throw error;
-            }
-        };
-
-        try {
-            const advice = await callApi();
-            if (advice) showAdviceInUI(advice);
-        } catch (error) { 
-            responseText.innerText = "公會智囊團目前通訊中斷，請確認連結。"; 
-            responseCard.classList.remove('hidden'); 
-        } finally { 
-            loading.classList.add('hidden'); 
-            btn.disabled = false; 
-        }
-    };
-
-    function showAdviceInUI(text) {
-        document.getElementById('ai-placeholder').classList.add('hidden');
-        const card = document.getElementById('ai-response-container');
-        card.classList.remove('hidden');
-        document.getElementById('ai-response-text').innerText = text;
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
     const tabData = [
         { 
-            icon: "👣", num: 1, title: "01｜潮間帶草鞋採集海藻", 
-            desc: "任務將從八斗子海岸展開。冒險者需進入潮間帶場域，透過現地觀察認識海岸地形、潮汐節奏與海洋生態，理解補給資源如何與地方環境緊密連動。這不只是觀看風景，而是學會讀懂海岸留下的線索，完成補給任務的第一步。",
-            tip: "潮水退去後，真正的情報才會浮現。請仔細觀察腳下的地景與海岸生命痕跡。",
-            images: [
-                "https://lh3.googleusercontent.com/pw/AP1GczNnXFMmXpZ0trWDcW6M4bjaV_Omms8uB8wC3zIOBre2SMumkLyUKrhUIHjnANY-b5hgBnzuWnFGxdT_mLRU3QcwoP67yL7LklVBdfpGAC9rcSWheMGs93xtoxeKj0AJFdGBP1toXbhTBtTMQuRF1iI=w723-h903-s-no-gm?authuser=0",
-                "https://lh3.googleusercontent.com/pw/AP1GczOSkMLa9K-W_4t8FtV44yrJVQfE4qrTG2fMmBzRLCTlwJo9SS-ZL6DnFJBCrVZSYrrLpuLpEo2Cp9Iub0L6LHOPYIpQ7hDnoCe2ED9xPafcBFlKGzwAybokTvYKnASU3vNX5ejt3lr8161q_l5i4L0=w508-h903-s-no-gm?authuser=0"
-            ]
+            icon: "👣", title: "1. 認識八斗子的海洋日常", 
+            desc: "由在地引導帶領，走入八斗子潮間帶周邊空間，從海岸地景、生態觀察到漁村脈絡，認識這片土地與海洋之間的日常連結。",
+            tip: "走進真實海岸場域，看見真正的海洋日常。",
+            images: ["https://lh3.googleusercontent.com/pw/AP1GczNnXFMmXpZ0trWDcW6M4bjaV_Omms8uB8wC3zIOBre2SMumkLyUKrhUIHjnANY-b5hgBnzuWnFGxdT_mLRU3QcwoP67yL7LklVBdfpGAC9rcSWheMGs93xtoxeKj0AJFdGBP1toXbhTBtTMQuRF1iI=w723-h903-s-no-gm?authuser=0"],
+            exp: ["潮間帶周邊場域探索", "八斗子在地故事導覽", "海岸觀察與地形辨識"]
         },
         { 
-            icon: "🌭", num: 2, title: "02｜親手灌製海藻香腸", 
-            desc: "完成海岸探索後，冒險者將返回補給工坊，進入補給製備階段。透過灌製流程，實際體驗如何把海洋風味與地方食材轉化為遠征所需的補給品。從材料認識、操作協作到成品成形，每一個步驟都象徵補給線的建立，也是任務中最具參與感的核心環節。",
-            tip: "補給不是單兵作業，而是隊伍默契的體現。穩定、協力、專注，才能完成真正合格的補給品。",
-            images: [
-                "https://lh3.googleusercontent.com/pw/AP1GczMUlsf8oF0rLqBoVQqzgYl_8etgSvfmuR3fZzJmvNntgSg0f8UiYSG4UlizBKSPnbX6OYH--pnRa-43bABUp9gihkydVsA29GXfBipY3dYMm-FWnVPSo-SWXYkGbIqpU2m8J3HCWgncttA1Seasf1k=w1605-h903-s-no-gm?authuser=0"
-            ]
+            icon: "🤝", title: "2. 不是只有看，而是親自參與", 
+            desc: "透過互動式導覽與任務引導，讓參與者不只是「聽介紹」，而是真正走進場域、理解地方、參與其中。參與，而非旁觀。",
+            tip: "真正的試煉在於親自踏入。而不只是旁觀。",
+            images: ["https://lh3.googleusercontent.com/pw/AP1GczOSkMLa9K-W_4t8FtV44yrJVQfE4qrTG2fMmBzRLCTlwJo9SS-ZL6DnFJBCrVZSYrrLpuLpEo2Cp9Iub0L6LHOPYIpQ7hDnoCe2ED9xPafcBFlKGzwAybokTvYKnASU3vNX5ejt3lr8161q_l5i4L0=w508-h903-s-no-gm?authuser=0"],
+            exp: ["互動式導覽與環境對話", "海洋線索任務解碼"]
         },
         { 
-            icon: "🔥", num: 3, title: "03｜現場炭烤成果驗證", 
-            desc: "當補給品完成灌製後，任務將進入最後驗證階段。透過現場炭烤，冒險者將親眼見證補給成果的完成，從香氣、色澤到口感，確認這份來自八斗子的補給是否足以支撐遠征行動。這不只是成果展示，更是任務完成的榮耀時刻。",
-            tip: "真正的補給成果，必須通過最後的現場驗證。當香氣升起的那一刻，任務才算真正完成。",
-            images: []
+            icon: "🌭", title: "3. 親手完成自己的海味補給", 
+            desc: "活動後段將進入香腸工坊體驗，以手作方式完成補給製作，從地方食材到飲食文化，感受八斗子的海味魅力與食育精髓。",
+            tip: "親手灌製，感受海洋素材到能量補給的神聖轉化。",
+            images: ["https://lh3.googleusercontent.com/pw/AP1GczMUlsf8oF0rLqBoVQqzgYl_8etgSvfmuR3fZzJmvNntgSg0f8UiYSG4UlizBKSPnbX6OYH--pnRa-43bABUp9gihkydVsA29GXfBipY3dYMm-FWnVPSo-SWXYkGbIqpU2m8J3HCWgncttA1Seasf1k=w1605-h903-s-no-gm?authuser=0"],
+            exp: ["香腸工坊手作實踐", "食育文化與海洋記憶串聯"]
         },
         { 
-            icon: "🛡️", num: 4, title: "CORE VALUE｜沉浸式任務體驗", 
-            desc: "本次活動以公會委託、補給任務與冒險者行動作為整體敘事主軸，將潮間帶探索、工坊實作與成果驗證串聯為一條完整任務線。參與者不是單純走流程，而是在故事設定中逐步完成各階段挑戰，讓活動兼具探索感、互動性與記憶點。",
-            tip: "公會的榮耀建立在細節之中，專注於當下的每一項任務，才能完成真正的補給試煉。",
-            images: []
+            icon: "🛡️", title: "4. 適合親子、朋友、團隊一起參加", 
+            desc: "不論您是想帶孩子認識海洋、和朋友來場深度微旅行，或尋找一場兼具學習與樂趣的團隊體驗，這場試煉都很適合。",
+            tip: "公會榮耀屬於每一位共同奮鬥的冒險家。",
+            images: [],
+            exp: ["跨世代共同體驗學習", "團隊默契與共同目標達成"]
         }
     ];
 
     window.activateTab = (index) => {
         const btns = document.querySelectorAll('.tab-btn');
-        btns.forEach((b, i) => b.className = i === index ? "tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-active glow-hover" : "tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive glow-hover");
-        
-        document.getElementById('tab-num-badge').innerText = index < 3 ? index + 1 : '★';
+        btns.forEach((b, i) => b.className = i === index ? "tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-active shadow-lg" : "tab-btn flex items-center gap-4 p-5 rounded-xl border-2 font-bold transition-all tab-inactive bg-slate-800 border-slate-700");
+        document.getElementById('tab-num-badge').innerText = index + 1;
         document.getElementById('tab-title').innerText = tabData[index].title;
         document.getElementById('tab-desc').innerText = tabData[index].desc;
         document.getElementById('tab-tip').innerText = tabData[index].tip;
         document.getElementById('bg-icon').innerText = tabData[index].icon;
-
+        
         const imgContainer = document.getElementById('tab-photo-container');
-        if (imgContainer) {
-            imgContainer.innerHTML = '';
-            if (tabData[index].images && tabData[index].images.length > 0) {
-                tabData[index].images.forEach(url => {
-                    const img = document.createElement('img');
-                    img.src = url;
-                    img.alt = "[任務影像]";
-                    img.className = "quest-photo";
-                    imgContainer.appendChild(img);
-                });
-            }
-        }
+        imgContainer.innerHTML = '';
+        tabData[index].images.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url; img.className = "quest-photo";
+            imgContainer.appendChild(img);
+        });
+
+        const expList = document.getElementById('tab-experience-list');
+        expList.innerHTML = '';
+        tabData[index].exp.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `• ${item}`;
+            expList.appendChild(li);
+        });
     };
 
-    const fullLoreText = "【公會緊急委託：補給行動】\n\n冒險者們！\n八斗子前線傳來緊急消息。\n\n公會補給工坊中，負責製作遠征軍糧食的傳奇香腸達人，因先前執行任務時意外受傷，短時間內無法繼續完成補給作業。偏偏此刻，真灼之眼的遠征隊正準備啟程，補給線不能中斷，士氣更不能動搖。\n於是，公會緊急發布委託——\n\n召集能夠回應任務的冒險者，前往八斗子海岸線，辨識潮間帶環境，採集可用的海洋線索與珍貴素材，並返回補給工坊，親手灌製與烘烤傳說中的補給品。\n這不職是一場普通的體驗。\n\n在《絕對傳奇》的世界裡，真正支撐遠征軍走向未知前線的，從來不只是武器與勇氣，還有那些來自土地、海洋與雙手製作而成的補給力量。\n潮水退去後，海岸會留下答案。\n\n而工坊裡升起的香氣，將把那些答案轉化成可以帶上旅途的能量。\n每一位加入這場行動的人，都不職是參與者，而是補給線上的正式成員。\n因為你手中完成的，不只是一份食物，而是一份支撐整支遠征軍繼續前進的榮耀。";
-
-    let loreIndex = 0;
-    const loreElement = document.getElementById("lore-text-container");
-    function typeLoreWriter() {
-        if (loreIndex < fullLoreText.length) {
-            const char = fullLoreText.charAt(loreIndex);
-            if (char === '\n') {
-                loreElement.appendChild(document.createElement('br'));
-            } else {
-                const span = document.createElement('span');
-                span.innerText = char;
-                loreElement.appendChild(span);
-            }
-            loreIndex++;
-            setTimeout(typeLoreWriter, 25);
-        }
-    }
-
-    function initRadarChart() {
+    function initSkillsChart() {
         const canvas = document.getElementById('skillsChart');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
+        
         new Chart(ctx, {
             type: 'radar',
             data: {
                 labels: ['生態觀察', '野炊烹飪', '物資採集', '團隊協作', '文化感知'],
-                datasets: [{
-                    label: '能力成長',
-                    data: [95, 80, 85, 90, 100],
-                    backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                    borderColor: 'rgba(212, 175, 55, 1)',
-                    pointBackgroundColor: '#0f766e',
-                    borderWidth: 2
+                datasets: [{ 
+                    data: [95, 80, 85, 90, 100], 
+                    backgroundColor: 'rgba(212, 175, 55, 0.2)', 
+                    borderColor: 'rgba(212, 175, 55, 1)', 
+                    pointBackgroundColor: '#0f766e' 
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { r: { grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#94a3b8' }, ticks: { display: false, min: 0, max: 100 } } },
-                plugins: { legend: { display: false } }
+            options: { 
+                responsive: true, maintainAspectRatio: false, 
+                scales: { 
+                    r: { 
+                        grid: { color: 'rgba(255,255,255,0.1)' }, 
+                        pointLabels: { color: '#94a3b8', font: { size: 12 } }, 
+                        ticks: { display: false } 
+                    } 
+                }, 
+                plugins: { legend: { display: false } } 
             }
         });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-            initRadarChart();
-            activateTab(0);
-            const obs = new IntersectionObserver((es) => { 
-                if(es[0].isIntersecting) { typeLoreWriter(); obs.disconnect(); } 
-            }, { threshold: 0.1 });
-            const loreTarget = document.getElementById('quest-lore');
-            if (loreTarget) obs.observe(loreTarget);
-        }, 100);
+        activateTab(0);
+        setTimeout(initSkillsChart, 100);
     });
 </script>
 </body>
